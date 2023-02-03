@@ -61,7 +61,6 @@ def gen_sidebar(root_path,by_date):
                     categories_by_date[date].append(full_filename.removeprefix(root_path).replace(os.path.sep,"/"))
                 fp.close()
     lines = []
-    lines.append("- [主页](/index.md)")
     dump_categories(lines,categories,"",0)
     if by_date:
         dates = list(categories_by_date.keys())
