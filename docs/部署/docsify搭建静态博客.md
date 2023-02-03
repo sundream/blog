@@ -30,25 +30,29 @@ docsify init .
 └─部署
 ```
 
-5. 添加文章
+4. 添加文章
 
-6. 自动生成侧边栏
+5. 自动生成侧边栏
 ```shell
 双击gen_sidebar.bat
 ```
 
-7. 本地预览
+6. 本地预览
 ```shell
 docsify serve .
 之后浏览器打开提示的url
 ```
 
-8. 上传到GitHub
+7. 上传到GitHub
 ```shell
 git add *
 git commit -m 'add: docsify搭建静态博客'
 git push origin master
 ```
+
+8. 配置github-page
+
+![deploy_github_page](../../images/deploy_github_page.png)
 
 9. 访问博客
 浏览器打开https://sundream.github.io/blog
