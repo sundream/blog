@@ -1,0 +1,5 @@
+- [主页](/index.md)
+- [Github](https://github.com/sundream/blog)
+- 友链
+    - [cloudwu](https://blog.codingnow.com)
+    - [domicat](https://domicat.me)
