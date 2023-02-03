@@ -51,7 +51,7 @@ git push origin master
 ```
 
 9. 访问博客
-浏览器打开http://github.com/sundream.github.io/blog
+浏览器打开https://sundream.github.io/blog
 
 ## 配置详解
 具体见[index.html](https://raw.githubusercontent.com/sundream/blog/master/index.html)

@@ -1,1 +1,1 @@
-# [blog](http://github.com/sundream.github.io/blog)
+# [blog](https://sundream.github.io/blog)
