@@ -28,7 +28,7 @@ def gen_sidebar(root_path,by_date):
         return
     date_patten = re.compile("<!--\s*date=(\d+)-(\d+)-(\d+)\s*-->")
     categories = {}
-    categories_by_date = {}     # date -> filename
+    categories_by_date = {}     # date(year-month) -> [day,filename]
     for path,dir_list,file_list in os.walk(root_path):
         current_categories = categories
         relativePath = path.removeprefix(root_path)
@@ -55,20 +55,23 @@ def gen_sidebar(root_path,by_date):
                     year = matched.group(1)
                     month = matched.group(2)
                     day = matched.group(3)
-                    date = "%04d-%02d-%02d" %  (int(year),int(month),int(day))
+                    date = "%04d-%02d" %  (int(year),int(month))
                     if not date in categories_by_date:
                         categories_by_date[date] = []
-                    categories_by_date[date].append(full_filename.removeprefix(root_path).replace(os.path.sep,"/"))
+                    categories_by_date[date].append([day,full_filename.removeprefix(root_path).replace(os.path.sep,"/")])
                 fp.close()
     lines = []
     dump_categories(lines,categories,"",0)
+    def get_day(elem):
+        return elem[1]
     if by_date:
         dates = list(categories_by_date.keys())
         dates.sort(reverse=True)
         for date in dates:
-            categories_by_date[date].sort()
+            categories_by_date[date].sort(key=get_day)
             lines.append("- %s(%s)" % (date,len(categories_by_date[date])))
-            for full_filename in categories_by_date[date]:
+            for v in categories_by_date[date]:
+                full_filename = v[1]
                 basename = os.path.basename(full_filename)
                 lines.append(indent + "- [%s](%s)" % (basename.removesuffix(".md"),full_filename))
     data = "\n".join(lines)
