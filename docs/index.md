@@ -1,3 +1,8 @@
+<span id="busuanzi_container_page_pv" style='display:none'>
+    本文阅读量: <span id="busuanzi_value_page_pv"></span> 次
+</span>
+<br>
+
 ## 关于我   <!-- {docsify-ignore-all} -->
 - [github](https://github.com/sundream)
 - 邮箱: linguanglianglgl@gmail.com

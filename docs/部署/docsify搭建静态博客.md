@@ -1,4 +1,9 @@
 <!-- date=2023-02-03 -->
+<span id="busuanzi_container_page_pv" style='display:none'>
+    本文阅读量: <span id="busuanzi_value_page_pv"></span> 次
+</span>
+<br>
+
 ## 快速开始
 1. 全局安装docsify-cli工具,方便本地预览文档
 ```shell
@@ -64,5 +69,7 @@ git push origin master
 - [docsify官网](https://docsify.js.org/#/)
 - [侧边栏目录折叠](https://github.com/iPeng6/docsify-sidebar-collapse)
 - [复制代码到剪贴板](https://github.com/jperasmus/docsify-copy-code)
-- [Docsify PUML](https://github.com/indieatom/docsify-puml)
+- [PUML画图](https://github.com/indieatom/docsify-puml)
 - [字数统计](https://github.com/827652549/docsify-count)
+- [统计阅读量](https://github.com/JoeyBling/busuanzi.pure.js)
+- [dot画图](https://github.com/mdaines/viz.js/releases)

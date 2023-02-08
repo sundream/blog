@@ -1,4 +1,9 @@
 <!-- date=2023-02-07 -->
+<span id="busuanzi_container_page_pv" style='display:none'>
+    本文阅读量: <span id="busuanzi_value_page_pv"></span> 次
+</span>
+<br>
+
 # Table of Contents
 [TOC]
 
@@ -6,9 +11,10 @@
 lua自身原生不支持面向对象,而主流语言大多都支持面向对象,对于习惯以面向对象思维开发的程序员来说,提供class支持是非常必要的。lua的class实现网上已有很多版本,比如[middleclass](https://github.com/kikito/middleclass)、[quick-cocos2dx-community](https://github.com/u0u0/Quick-Cocos2dx-Community/blob/master/quick/framework/functions.lua#L284),之所有重新造轮子是想支持: 1. 支持多重继承; 2. 支持热更父类直接影响子类 3. 支持继承userdata;这块后续会进一步说明。lua支持__index元方法,允许对象访问不存在的属性时触发调用,因此我们可以利用这个特性实现继承。
 
 ## 简版实现
-```
+```lua
 function class(classname,super)
     local cls = {}
+    _G[classname] = cls
     cls.__index = cls
     cls.ctor = false
     cls.super = super
@@ -300,6 +306,7 @@ local core = require "vector3.core"
 
 local Vector3 = class("Vector3")
 
+--userdata的构造函数,需要返回userdata,他会绑定到lua实例的__userdata字段
 function Vector3:__create(x,y,z)
     local userdata = core.new(x,y,z)
     return userdata
