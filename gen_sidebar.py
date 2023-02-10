@@ -27,6 +27,7 @@ def gen_sidebar(root_path,by_date):
         print("'%s' not a directory" % root_path)
         return
     date_patten = re.compile("<!--\s*date=(\d+)-(\d+)-(\d+)\s*-->")
+    desc_patten = re.compile("<!--\s*(.+)\s*-->")
     categories = {}
     categories_by_date = {}     # date(year-month) -> [day,filename]
     for path,dir_list,file_list in os.walk(root_path):
@@ -45,21 +46,32 @@ def gen_sidebar(root_path,by_date):
                 continue
             if not filename.endswith(".md"):
                 continue
-            current_categories[filename.removesuffix(".md")] = True
+            hide = False;
             full_filename = os.path.join(path,filename)
-            if by_date:
-                fp = open(full_filename,"r",encoding="utf-8")
-                line = fp.readline()
-                matched = date_patten.match(line)
-                if matched:
-                    year = matched.group(1)
-                    month = matched.group(2)
-                    day = matched.group(3)
+            fp = open(full_filename,"r",encoding="utf-8")
+            line = fp.readline()
+            matched = date_patten.match(line)
+            matched = desc_patten.match(line)
+            if matched:
+                line = matched.group(1)
+                lst = line.split()
+                has_date = False
+                year,month,day = None,None,None
+                for elem in lst:
+                    k,v = elem.split("=")
+                    if k == "date":
+                        has_date = True
+                        year,month,day = v.split("-")
+                    elif k == "hide":
+                        hide = True
+                if not hide and by_date and has_date:
                     date = "%04d-%02d" %  (int(year),int(month))
                     if not date in categories_by_date:
                         categories_by_date[date] = []
                     categories_by_date[date].append([day,full_filename.removeprefix(root_path).replace(os.path.sep,"/")])
                 fp.close()
+            if not hide:
+                current_categories[filename.removesuffix(".md")] = True
     lines = []
     dump_categories(lines,categories,"",0)
     def get_day(elem):
