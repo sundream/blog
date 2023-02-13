@@ -136,10 +136,8 @@ function class(name,...)
             end
         end
     end
-    if type(supers[1]) == "function" then
-        assert(#supers == 1,"only support single inheritance from userdata")
-        class_type.__create = supers[1]
-        supers = {}
+    if type(supers[#supers]) == "function" then
+        class_type.__create = table.remove(supers,#supers)
     end
     class_type.__supers = {}
     class_type.extend = function (class_type,super_class)

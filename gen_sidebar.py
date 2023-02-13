@@ -9,24 +9,24 @@ indent = "    "
 def dump_categories(lines,categories,path,deepth):
     keys = list(categories.keys())
     keys.sort()
+    count = 0
     for name in keys:
         if type(categories[name]) is dict:
-            count = 0
-            for k,v in categories[name].items():
-                if type(v) == bool:
-                    # file
-                    count = count + 1
-            lines.append(deepth * indent + "- %s(%s)" % (name,count))
-            dump_categories(lines,categories[name], path + "/" + name, deepth+1)
+            lines.append("")
+            dirIndex = len(lines) - 1
+            dirCount = dump_categories(lines,categories[name], path + "/" + name, deepth+1)
+            count = count + dirCount
+            lines[dirIndex] = deepth * indent + "- %s(%s)" % (name,dirCount)
         else:
             lines.append(deepth * indent + "- [%s](%s)" % (name,path + "/" + name + ".md"))
+            count = count + 1
+    return count
 
 
 def gen_sidebar(root_path,by_date):
     if not os.path.isdir(root_path):
         print("'%s' not a directory" % root_path)
         return
-    date_patten = re.compile("<!--\s*date=(\d+)-(\d+)-(\d+)\s*-->")
     desc_patten = re.compile("<!--\s*(.+)\s*-->")
     categories = {}
     categories_by_date = {}     # date(year-month) -> [day,filename]
@@ -50,7 +50,6 @@ def gen_sidebar(root_path,by_date):
             full_filename = os.path.join(path,filename)
             fp = open(full_filename,"r",encoding="utf-8")
             line = fp.readline()
-            matched = date_patten.match(line)
             matched = desc_patten.match(line)
             if matched:
                 line = matched.group(1)
