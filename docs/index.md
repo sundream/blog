@@ -15,3 +15,8 @@
 
 如果你觉得我的文章对你有帮助，你可以帮作者买一杯咖啡表示支持!<br>
 ![sponsor](../images/sponsor.png)
+
+## 备案号
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2023010639</a>
+<br>
+<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2023010639-1</a>
