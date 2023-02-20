@@ -8,9 +8,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="docsify/themes/vue.css"/>
   <link rel="stylesheet" href="docsify/plugins/sidebar.css"/>
+  <link rel="stylesheet" href="docsify/plugins/toc.css">
   <!-- cdn 下载插件-->
   <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css" />
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" /> -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/docsify-toc@1.0.0/dist/toc.css"> -->
+  <style>
+    .app-nav {
+      /* 导航栏样式,可以给导航栏加一条分割线 */
+      position: fixed;
+      margin: 0;
+      /*padding: 10px 50px 10px 0;*/
+      padding: 10px 0 10px 0;
+      /*上、右、下、左*/
+      width: calc(100% - 325px);
+      background-color: #fff;
+      height: 50px;
+      border-bottom: 1px solid #eee;
+    }
+  </style>
 </head>
 <body>
   <div id="app"></div>
@@ -18,14 +34,14 @@
     window.$docsify = {
       name: "sundream<br>思绪在此停留",
       nameLink : "#/index.md",                      // 点击name后跳转的地址
-      repo: 'http://github.com/sundream/blog',      // 页面右上角渲染一个GitHub Corner挂件
+    //   repo: 'http://github.com/sundream/blog',      // 页面右上角渲染一个GitHub Corner挂件
       homepage : "index.md",
       basePath : "docs",        // 文章根目录
       auto2top : true,          // 切换文章后自动定为到文章顶部
       search : 'auto',
       loadSidebar : true,       // 根据_sidebar.md载入侧边栏
       autoHeader : true,        // 自动根据文章header生成文章目录栏
-      subMaxLevel : 2,          // 文章目录栏最大层级
+      //subMaxLevel : 2,          // 文章目录栏最大层级
       sidebarDisplayLevel : 0,  // docsify-sidebar-collapse插件参数: 目录下默认显示层级数
       alias: {
         '/.*/_sidebar.md': '/_sidebar.md'
@@ -60,6 +76,11 @@
           }
         }
       },
+      toc: {
+        scope: '.markdown-section',
+        headings: 'h1, h2, h3, h4, h5, h6',
+        title : '',
+      },
     }
   </script>
   <!-- Docsify v4 -->
@@ -72,6 +93,7 @@
   <script async src="docsify/plugins/busuanzi.pure.js"></script>
   <script src="docsify/plugins/viz.js"></script>
   <script src="docsify/plugins/docsify-copy-code.js"></script>
+  <script src="docsify/plugins/toc.js"></script>
 
   <!-- cdn下载插件-->
   <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
@@ -82,7 +104,8 @@
   <script src="//unpkg.com/docsify-plantuml/dist/docsify-plantuml.min.js"></script>
   <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <script src="//cdn.jsdelivr.net/npm/viz.js@1.8.0/viz.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script> -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <script src="https://unpkg.com/docsify-toc@1.0.0/dist/toc.js"></script>-->
 
 </body>
 </html>
