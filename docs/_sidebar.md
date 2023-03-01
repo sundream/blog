@@ -1,7 +1,6 @@
 - C(0)
 - C++(0)
 - Go(0)
-- Linux(0)
 - Lua(2)
     - [lua代码热更新](/Lua/lua代码热更新.md)
     - [给lua提供class](/Lua/给lua提供class.md)
